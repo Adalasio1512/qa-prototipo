@@ -1,0 +1,9 @@
+﻿[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+  "unit: Unit tests",
+  "smoke: Smoke tests de sanidad",
+  "top20: Regresión Top-20",
+]
