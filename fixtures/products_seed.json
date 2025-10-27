@@ -1,0 +1,5 @@
+﻿[
+  {"id":1,"name":"Laptop A","category":"Electrónica","price":950},
+  {"id":2,"name":"Mouse B","category":"Electrónica","price":25},
+  {"id":3,"name":"Mesa C","category":"Hogar","price":150}
+]
