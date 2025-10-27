@@ -7,6 +7,9 @@ on:
 jobs:
   test-and-gate:
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -25,15 +28,15 @@ jobs:
 
       - name: Unit tests + coverage
         run: |
-          pytest -m "unit" --maxfail=1 --cov=app --cov-report=xml:coverage.xml --junitxml=reports_unit.xml
+          python -m pytest -m "unit" --maxfail=1 --cov=app --cov-report=xml:coverage.xml --junitxml=reports_unit.xml
 
       - name: Smoke tests (rerun 1)
         run: |
-          pytest -m "smoke" --reruns 1 --reruns-delay 1 --junitxml=reports_smoke.xml
+          python -m pytest -m "smoke" --reruns 1 --reruns-delay 1 --junitxml=reports_smoke.xml
 
       - name: Top-20 regression (rerun 1)
         run: |
-          pytest -m "top20" --reruns 1 --reruns-delay 1 --junitxml=reports/top20.xml
+          python -m pytest -m "top20" --reruns 1 --reruns-delay 1 --junitxml=reports/top20.xml
 
       - name: Quality Gate - Coverage ≥ 70%
         run: |
